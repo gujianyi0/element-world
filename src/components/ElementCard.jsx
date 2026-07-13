@@ -1,9 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-// 化学符号图标映射（emoji备选方案）
+// 化学符号图标映射（无缩略图时的备选方案）
 const elementIcons = {
-  Si: '💎',
   Cu: '🔶',
   Fe: '⚙️',
   C: '💠',
@@ -30,9 +29,17 @@ function ElementCard({ element }) {
         className="card-img"
         style={{ background: `linear-gradient(135deg, ${element.color}22 0%, ${element.color}11 100%)` }}
       >
-        <span className="placeholder-icon">
-          {elementIcons[element.symbol] || '🧪'}
-        </span>
+        {element.thumbnail ? (
+          <img
+            src={element.thumbnail}
+            alt={name}
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        ) : (
+          <span className="placeholder-icon">
+            {elementIcons[element.symbol] || '🧪'}
+          </span>
+        )}
         <span className="atomic-number">{element.atomicNumber}</span>
       </div>
       <div className="card-body">

@@ -25,6 +25,7 @@ const elements = [
     atomicNumber: 14,
     modelFile: 'silicon.glb',
     modelFormat: 'glb',
+    thumbnail: '/images/reference/1524e355f73186d69ec89598be81d34e.jpg',
     color: '#8e44ad',
     basicInfo: {
       zh: '硅是地壳中第二丰富的元素，仅次于氧。它是半导体工业的核心材料，也是现代电子设备的基础。硅的拟人化形象是一位聪慧的少女，代表着科技与自然的完美融合。',

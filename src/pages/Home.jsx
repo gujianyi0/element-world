@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import Header from '../components/Header';
-import ReferenceCard from '../components/ReferenceCard';
 import ElementCard from '../components/ElementCard';
 import elements from '../data/elements';
 
@@ -21,10 +20,6 @@ function Home() {
 
       {/* 主体内容 */}
       <main className="main">
-        {/* 参考模型卡片 */}
-        <h2 className="section-title">{t('home.referenceTitle')}</h2>
-        <ReferenceCard />
-
         {/* 元素模型展示 */}
         <h2 className="section-title">{t('home.elementsTitle')}</h2>
         <p className="section-desc">{t('home.elementsDesc')}</p>
