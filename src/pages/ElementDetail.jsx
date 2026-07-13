@@ -27,6 +27,8 @@ function ElementDetail() {
   const name = lang === 'zh' ? element.nameZh : element.nameEn;
   // 优先使用远程R2地址，本地开发时使用本地文件
   const modelPath = element.modelUrl || (element.modelFile ? `/models/${element.modelFile}` : null);
+  // 根据语言选择背景图
+  const backgroundImage = lang === 'zh' ? element.thumbnailZh : element.thumbnailEn;
 
   // 辅助函数：获取双语内容
   const getContent = (field) => {
@@ -42,7 +44,7 @@ function ElementDetail() {
 
       <div className="detail-content">
         {/* 3D模型查看器 */}
-        <ModelViewer modelPath={modelPath} />
+        <ModelViewer modelPath={modelPath} themeColor={element.color} backgroundImage={backgroundImage} />
 
         {/* 元素信息面板 */}
         <aside className="info-panel">

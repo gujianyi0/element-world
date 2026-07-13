@@ -23,17 +23,20 @@ function ElementCard({ element }) {
     ? element.basicInfo.zh.slice(0, 60) + '...'
     : element.basicInfo.en.slice(0, 100) + '...';
 
+  // 根据语言选择缩略图
+  const thumbnail = lang === 'zh' ? element.thumbnailZh : element.thumbnailEn;
+
   return (
     <div className="element-card" onClick={handleClick}>
       <div
         className="card-img"
         style={{ background: `linear-gradient(135deg, ${element.color}22 0%, ${element.color}11 100%)` }}
       >
-        {element.thumbnail ? (
+        {thumbnail ? (
           <img
-            src={element.thumbnail}
+            src={thumbnail}
             alt={name}
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '12px' }}
           />
         ) : (
           <span className="placeholder-icon">

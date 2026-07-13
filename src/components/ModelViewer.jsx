@@ -1,11 +1,9 @@
 import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, useGLTF, Environment, ContactShadows, Bounds, useProgress } from '@react-three/drei';
+import { OrbitControls, useGLTF, Environment, ContactShadows, useProgress } from '@react-three/drei';
 import { useTranslation } from 'react-i18next';
 
-// 加载进度显示
 function Loader() {
-  const { progress } = useProgress();
   return (
     <mesh>
       <boxGeometry args={[1, 1, 1]} />
@@ -14,18 +12,13 @@ function Loader() {
   );
 }
 
-// 3D模型渲染组件（支持 GLB/GLTF）
 function Model({ modelPath }) {
   const { scene } = useGLTF(modelPath);
-
-  return (
-    <Bounds fit clip observe margin={1.2}>
-      <primitive object={scene} />
-    </Bounds>
-  );
+  // 不自动居中，保持模型原始位置
+  return <primitive object={scene} position={[0, 0.6, 0]} />;
 }
 
-function ModelViewer({ modelPath }) {
+function ModelViewer({ modelPath, themeColor = '#2980b9', backgroundImage }) {
   const { t } = useTranslation();
 
   if (!modelPath) {
@@ -46,47 +39,60 @@ function ModelViewer({ modelPath }) {
     );
   }
 
+  // 科技蓝风格背景
+  const bgGradient = 'linear-gradient(180deg, #0a1628 0%, #112240 40%, #1a3a5c 100%)';
+
   return (
     <div className="model-viewer-panel">
       <div className="viewer-header">
         <span>🎮 {t('detail.modelViewer')}</span>
         <span>{t('detail.rotateHint')}</span>
       </div>
-      <Canvas
-        camera={{ position: [3, 2, 5], fov: 40 }}
-        style={{ flex: 1, background: 'linear-gradient(180deg, #e8f0fe 0%, #f0f3f8 100%)' }}
-      >
-        {/* 灯光设置 */}
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[5, 8, 5]} intensity={1.2} castShadow />
-        <directionalLight position={[-5, 3, -5]} intensity={0.5} />
-        <directionalLight position={[0, -2, 3]} intensity={0.3} />
-
-        <Suspense fallback={<Loader />}>
-          <Model modelPath={modelPath} />
-          <ContactShadows
-            position={[0, -2, 0]}
-            opacity={0.35}
-            scale={8}
-            blur={2}
+      <div style={{ flex: 1, position: 'relative' }}>
+        {/* 全景渲染图背景 */}
+        {backgroundImage && (
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              backgroundImage: `url(${backgroundImage})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              opacity: 0.35,
+              zIndex: 0,
+            }}
           />
-        </Suspense>
+        )}
+        <Canvas
+          camera={{ position: [2.5, 2.2, 4], fov: 42 }}
+          style={{ position: 'relative', zIndex: 1, background: backgroundImage ? 'transparent' : bgGradient }}
+        >
+          <color attach="background" args={['#0a1628']} />
 
-        {/* 环境贴图 */}
-        <Environment preset="studio" />
+          <ambientLight intensity={0.55} />
+          <directionalLight position={[5, 8, 5]} intensity={1.0} castShadow />
+          <directionalLight position={[-5, 3, -5]} intensity={0.4} />
+          <directionalLight position={[0, -1, 3]} intensity={0.25} />
 
-        {/* 交互控制 */}
-        <OrbitControls
-          enablePan={true}
-          enableZoom={true}
-          enableRotate={true}
-          autoRotate={true}
-          autoRotateSpeed={0.6}
-          minDistance={1.5}
-          maxDistance={15}
-          target={[0, 0.5, 0]}
-        />
-      </Canvas>
+          <Suspense fallback={<Loader />}>
+            <Model modelPath={modelPath} />
+            <ContactShadows position={[0, -1.8, 0]} opacity={0.3} scale={8} blur={2} />
+          </Suspense>
+
+          <Environment preset="city" />
+
+          <OrbitControls
+            enablePan={true}
+            enableZoom={true}
+            enableRotate={true}
+            autoRotate={true}
+            autoRotateSpeed={0.6}
+            minDistance={1.5}
+            maxDistance={12}
+            target={[0, 1.0, 0]}
+          />
+        </Canvas>
+      </div>
     </div>
   );
 }

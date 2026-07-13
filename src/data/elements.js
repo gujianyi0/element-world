@@ -7,7 +7,7 @@
 // - modelFile: 3D模型文件名（放在 public/models/ 下，本地开发用）
 // - modelUrl: 3D模型远程URL（Cloudflare R2，生产环境用）
 // - modelFormat: 'fbx' | 'glb' | 'gltf'
-// - thumbnail: 缩略图（可选，若无则显示占位符）
+// - thumbnailZh/thumbnailEn: 中英文缩略图（可选，若无则显示占位符）
 // - basicInfo: 基本介绍
 // - existence: 存在与作用
 // - personality: 性格设定（拟人化）
@@ -25,7 +25,8 @@ const elements = [
     atomicNumber: 14,
     modelFile: 'silicon.glb',
     modelFormat: 'glb',
-    thumbnail: '/images/reference/1524e355f73186d69ec89598be81d34e.jpg',
+    thumbnailZh: '/images/reference/1524e355f73186d69ec89598be81d34e.jpg',
+    thumbnailEn: '/images/reference/ab1a8132ec182a82ef8fbfbde57a151d.jpg',
     color: '#8e44ad',
     basicInfo: {
       zh: '硅是地壳中第二丰富的元素，仅次于氧。它是半导体工业的核心材料，也是现代电子设备的基础。硅的拟人化形象是一位聪慧的少女，代表着科技与自然的完美融合。',
@@ -60,7 +61,8 @@ const elements = [
     atomicNumber: 29,
     modelFile: 'copper.glb',
     modelFormat: 'glb',
-    thumbnail: '/images/reference/4270f55ddfca38588ca7efa6167638ce.jpg',
+    thumbnailZh: '/images/reference/4270f55ddfca38588ca7efa6167638ce.jpg',
+    thumbnailEn: '/images/reference/tong2.jpg',
     color: '#e67e22',
     basicInfo: {
       zh: '铜是人类最早使用的金属之一，距今已有超过一万年的历史。它独特的红橙色光泽使其在金属中脱颖而出。铜的拟人化形象是一位温暖而有活力的少女，承载着人类文明的古老记忆。',
