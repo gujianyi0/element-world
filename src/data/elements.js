@@ -60,6 +60,7 @@ const elements = [
     atomicNumber: 29,
     modelFile: 'copper.glb',
     modelFormat: 'glb',
+    thumbnail: '/images/reference/4270f55ddfca38588ca7efa6167638ce.jpg',
     color: '#e67e22',
     basicInfo: {
       zh: '铜是人类最早使用的金属之一，距今已有超过一万年的历史。它独特的红橙色光泽使其在金属中脱颖而出。铜的拟人化形象是一位温暖而有活力的少女，承载着人类文明的古老记忆。',

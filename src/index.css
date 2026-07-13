@@ -212,7 +212,7 @@ h1, h2, h3, h4 { font-family: var(--heading); color: var(--text-heading); font-w
   box-shadow: var(--shadow-hover);
 }
 .element-card .card-img {
-  height: 220px;
+  aspect-ratio: 2 / 3;
   background: linear-gradient(135deg, #e8f0fe 0%, #d4e6f1 100%);
   display: flex;
   align-items: center;
