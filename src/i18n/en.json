@@ -1,0 +1,33 @@
+{
+  "site": {
+    "title": "Element World",
+    "subtitle": "元素世界",
+    "description": "Welcome to the world of elements — explore anthropomorphized chemical elements and their 3D printed models."
+  },
+  "nav": {
+    "home": "Home",
+    "back": "← Back to Home",
+    "language": "Language"
+  },
+  "home": {
+    "referenceTitle": "Reference Model Cards",
+    "referenceDesc": "Below are the anthropomorphized designs and information cards for each element. Every element features a unique character design and scientific background.",
+    "elementsTitle": "Element Model Showcase",
+    "elementsDesc": "Click a card to view the 3D model and detailed information",
+    "viewDetail": "View Details →"
+  },
+  "detail": {
+    "modelViewer": "3D Model Viewer",
+    "rotateHint": "🖱 Drag to rotate | Scroll to zoom | Right-drag to pan",
+    "basicInfo": "Basic Information",
+    "existence": "Existence & Role",
+    "personality": "Personality",
+    "funFact": "Fun Facts",
+    "commonForm": "Common Forms",
+    "physicalProperties": "Physical Properties",
+    "modelInfo": "Model Information"
+  },
+  "footer": {
+    "copyright": "© 2026 Element World. All rights reserved."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "site": {
+    "title": "元素世界",
+    "subtitle": "Element World",
+    "description": "欢迎来到元素的世界，探索化学元素的拟人化形象与3D打印模型。"
+  },
+  "nav": {
+    "home": "首页",
+    "back": "← 返回首页",
+    "language": "语言"
+  },
+  "home": {
+    "referenceTitle": "参考模型卡片",
+    "referenceDesc": "以下是元素的拟人化设计与信息卡片参考，每个元素都有独特的角色设定与科学背景。",
+    "elementsTitle": "元素模型展示",
+    "elementsDesc": "点击卡片查看元素的3D模型与详细信息",
+    "viewDetail": "查看详情 →"
+  },
+  "detail": {
+    "modelViewer": "3D 模型查看器",
+    "rotateHint": "🖱 拖拽旋转 | 滚轮缩放 | 右键平移",
+    "basicInfo": "基本信息",
+    "existence": "存在与作用",
+    "personality": "性格设定",
+    "funFact": "有趣小知识",
+    "commonForm": "常见存在形式",
+    "physicalProperties": "物理性质",
+    "modelInfo": "模型信息"
+  },
+  "footer": {
+    "copyright": "© 2026 元素世界 Element World. 保留所有权利。"
+  }
+}

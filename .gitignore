@@ -1,0 +1,17 @@
+# 依赖（几百MB，npm install 一秒还原）
+node_modules/
+
+# 构建产物（npm run build 一秒生成）
+dist/
+
+# Cloudflare 缓存
+.wrangler/
+
+# 临时脚本（一次性使用）
+scripts/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
