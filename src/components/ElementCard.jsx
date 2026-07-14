@@ -19,9 +19,9 @@ function ElementCard({ element }) {
   };
 
   const name = lang === 'zh' ? element.nameZh : element.nameEn;
-  const description = lang === 'zh'
-    ? element.basicInfo.zh.slice(0, 60) + '...'
-    : element.basicInfo.en.slice(0, 100) + '...';
+  const info = element?.basicInfo;
+  const descText = info ? (lang === 'zh' ? info.zh : info.en) : '';
+  const description = descText ? descText.slice(0, 60) + '...' : '';
 
   // 根据语言选择缩略图
   const thumbnail = lang === 'zh' ? element.thumbnailZh : element.thumbnailEn;

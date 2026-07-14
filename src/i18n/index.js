@@ -3,7 +3,8 @@ import { initReactI18next } from 'react-i18next';
 import zh from './zh.json';
 import en from './en.json';
 
-const savedLang = localStorage.getItem('element-world-lang') || 'zh';
+let savedLang = 'zh';
+try { savedLang = localStorage.getItem('element-world-lang') || 'zh'; } catch {}
 
 i18n.use(initReactI18next).init({
   resources: {

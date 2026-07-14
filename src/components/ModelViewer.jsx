@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, useGLTF, Environment, ContactShadows } from '@react-three/drei';
+import { OrbitControls, useGLTF, ContactShadows } from '@react-three/drei';
 import { useTranslation } from 'react-i18next';
 
 function Loader() {
@@ -45,20 +45,13 @@ function ModelViewer({ modelPath, themeColor = '#2980b9', backgroundImage }) {
         <span>{t('detail.rotateHint')}</span>
       </div>
       <div style={{ flex: 1, position: 'relative' }}>
-        {/* 全景渲染图背景 */}
         {backgroundImage && (
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              backgroundImage: `url(${backgroundImage})`,
-              backgroundSize: 'contain',
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'center',
-              opacity: 0.35,
-              zIndex: 0,
-            }}
-          />
+          <div style={{
+            position: 'absolute', inset: 0,
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundSize: 'contain', backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center', opacity: 0.35, zIndex: 0,
+          }} />
         )}
         <Canvas
           key={modelPath}
@@ -66,36 +59,30 @@ function ModelViewer({ modelPath, themeColor = '#2980b9', backgroundImage }) {
           style={{ position: 'relative', zIndex: 1 }}
           gl={{ preserveDrawingBuffer: false, antialias: true }}
           onCreated={({ gl }) => {
-            // WebGL 上下文丢失时自动恢复
-            gl.domElement.addEventListener('webglcontextlost', (e) => {
-              e.preventDefault();
-            });
+            const handler = (e) => e.preventDefault();
+            gl.domElement.addEventListener('webglcontextlost', handler);
+            gl.domElement.addEventListener('webglcontextrestored', () => {});
+            // 清理函数在 Canvas 销毁时由 R3F 自动处理
           }}
         >
-          {backgroundImage ? (
-            <color attach="background" args={['#0a1628']} />
-          ) : null}
+          <color attach="background" args={['#0a1628']} />
 
-          <ambientLight intensity={0.55} />
-          <directionalLight position={[5, 8, 5]} intensity={1.0} castShadow />
+          {/* 多角度灯光代替 Environment，纯本地，不请求 CDN */}
+          <ambientLight intensity={0.5} />
+          <directionalLight position={[5, 8, 5]} intensity={1.2} />
           <directionalLight position={[-5, 3, -5]} intensity={0.4} />
-          <directionalLight position={[0, -1, 3]} intensity={0.25} />
+          <directionalLight position={[0, -2, 3]} intensity={0.2} />
+          <directionalLight position={[3, -1, -3]} intensity={0.3} />
 
           <Suspense fallback={<Loader />}>
             <Model modelPath={modelPath} />
             <ContactShadows position={[0, -1.8, 0]} opacity={0.3} scale={8} blur={2} />
           </Suspense>
 
-          <Environment preset="city" />
-
           <OrbitControls
-            enablePan={true}
-            enableZoom={true}
-            enableRotate={true}
-            autoRotate={true}
-            autoRotateSpeed={0.6}
-            minDistance={1.5}
-            maxDistance={12}
+            enablePan={true} enableZoom={true} enableRotate={true}
+            autoRotate autoRotateSpeed={0.6}
+            minDistance={1.5} maxDistance={12}
             target={[0, 1.0, 0]}
           />
         </Canvas>

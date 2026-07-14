@@ -1,110 +1,129 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from 'react';
 import Header from '../components/Header';
-import ModelViewer from '../components/ModelViewer';
 import { getElementById } from '../data/elements';
-import { useEffect } from 'react';
+
+// 手机端：纯图片展示，零 Three.js 依赖
+function MobileElementView({ element, backgroundImage }) {
+  return (
+    <div className="model-viewer-panel">
+      <div className="viewer-header">
+        <span>🖼️ {element.nameZh} — {element.nameEn}</span>
+      </div>
+      <div style={{
+        flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center',
+        background: '#0a1628',
+      }}>
+        {backgroundImage ? (
+          <img src={backgroundImage} alt={element.nameZh}
+            style={{ width: '100%', height: '100%', objectFit: 'contain', padding: 8 }} />
+        ) : (
+          <span style={{ fontSize: 80, opacity: 0.4 }}>🧪</span>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// 电脑端：3D查看器（延迟加载，不打包进主文件）
+let DesktopModelViewer = null;
+function getDesktopViewer() {
+  if (!DesktopModelViewer) {
+    DesktopModelViewer = import('../components/ModelViewer').then(m => m.default);
+  }
+  return DesktopModelViewer;
+}
+
+function DesktopView({ modelPath, themeColor, backgroundImage }) {
+  const [Viewer, setViewer] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    getDesktopViewer().then(mod => {
+      if (!cancelled) setViewer(() => mod);
+    }).catch(() => {
+      if (!cancelled) setViewer(() => null); // 加载失败，回退到占位
+    });
+    return () => { cancelled = true; };
+  }, []);
+
+  if (!Viewer) {
+    return (
+      <div className="model-viewer-panel" style={{ minHeight: 400, background: '#0a1628', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <span style={{ color: '#fff', opacity: 0.4 }}>加载3D查看器...</span>
+      </div>
+    );
+  }
+
+  return <Viewer modelPath={modelPath} themeColor={themeColor} backgroundImage={backgroundImage} />;
+}
 
 function ElementDetail() {
   const { elementId } = useParams();
   const { t, i18n } = useTranslation();
-  const navigate = useNavigate();
-  const lang = i18n.language;
+  const lang = i18n.language || 'zh';
+  // 直接用 CSS 媒体查询控制显隐，不用 JS 监听（手机滚动时 resize 事件会崩）
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== 'undefined' ? window.innerWidth < 768 : false
+  );
 
   const element = getElementById(elementId);
 
-  // 如果找不到对应元素，返回首页
-  useEffect(() => {
-    if (!element) {
-      navigate('/');
-    }
-  }, [element, navigate]);
-
   if (!element) {
-    return null;
+    return (
+      <div className="detail-page">
+        <Header />
+        <div style={{ padding: 60, textAlign: 'center' }}>
+          <h2>元素未找到</h2>
+          <Link to="/">← 返回首页</Link>
+        </div>
+      </div>
+    );
   }
 
-  const name = lang === 'zh' ? element.nameZh : element.nameEn;
-  // 优先使用远程R2地址，本地开发时使用本地文件
-  const modelPath = element.modelUrl || (element.modelFile ? `/models/${element.modelFile}` : null);
-  // 根据语言选择背景图
-  const backgroundImage = lang === 'zh' ? element.thumbnailZh : element.thumbnailEn;
+  const modelPath = element.modelFile ? `/models/${element.modelFile}` : null;
+  const backgroundImage = (lang === 'zh' ? element.thumbnailZh : element.thumbnailEn) || element.thumbnailZh || null;
 
-  // 辅助函数：获取双语内容
-  const getContent = (field) => {
-    if (typeof element[field] === 'object' && element[field] !== null) {
-      return element[field][lang] || element[field].zh;
-    }
-    return element[field] || '';
+  const get = (field) => {
+    try {
+      const data = element?.[field];
+      if (!data) return '';
+      if (typeof data === 'string') return data;
+      return data?.[lang] || data?.zh || '';
+    } catch { return ''; }
   };
 
   return (
     <div className="detail-page">
       <Header />
-
       <div className="detail-content">
-        {/* 3D模型查看器 */}
-        <ModelViewer modelPath={modelPath} themeColor={element.color} backgroundImage={backgroundImage} />
-
-        {/* 元素信息面板 */}
+        {isMobile ? (
+          <MobileElementView element={element} backgroundImage={backgroundImage} />
+        ) : (
+          <DesktopView modelPath={modelPath} themeColor={element.color} backgroundImage={backgroundImage} />
+        )}
         <aside className="info-panel">
-          {/* 元素名称 */}
           <div className="info-card">
             <div className="element-name-zh">
-              {element.nameZh}
-              <span style={{ fontSize: '1.2rem', color: element.color, marginLeft: 8 }}>
-                  {element.symbol}
-                </span>
+              {element.nameZh || ''}
+              <span style={{ fontSize: '1.2rem', color: element.color || '#666', marginLeft: 8 }}>{element.symbol || ''}</span>
             </div>
-            <div className="element-name-en">{element.nameEn}</div>
+            <div className="element-name-en">{element.nameEn || ''}</div>
             <div className="info-row">
               <span className="label">{lang === 'zh' ? '原子序数' : 'Atomic Number'}</span>
-              <span className="value">{element.atomicNumber}</span>
+              <span className="value">{element.atomicNumber || ''}</span>
             </div>
           </div>
-
-          {/* 基本介绍 */}
-          <div className="info-card">
-            <h3>📖 {t('detail.basicInfo')}</h3>
-            <p className="info-text">{getContent('basicInfo')}</p>
-          </div>
-
-          {/* 存在与作用 */}
-          <div className="info-card">
-            <h3>🌍 {t('detail.existence')}</h3>
-            <p className="info-text">{getContent('existence')}</p>
-          </div>
-
-          {/* 性格设定 */}
-          <div className="info-card">
-            <h3>✨ {t('detail.personality')}</h3>
-            <p className="info-text">{getContent('personality')}</p>
-          </div>
-
-          {/* 有趣小知识 */}
-          <div className="info-card">
-            <h3>💡 {t('detail.funFact')}</h3>
-            <p className="info-text">{getContent('funFact')}</p>
-          </div>
-
-          {/* 常见存在形式 */}
-          <div className="info-card">
-            <h3>🔍 {t('detail.commonForm')}</h3>
-            <p className="info-text">{getContent('commonForm')}</p>
-          </div>
-
-          {/* 物理性质 */}
-          <div className="info-card">
-            <h3>📐 {t('detail.physicalProperties')}</h3>
-            <p className="info-text">{getContent('physicalProperties')}</p>
-          </div>
+          <div className="info-card"><h3>📖 {t('detail.basicInfo')}</h3><p className="info-text">{get('basicInfo')}</p></div>
+          <div className="info-card"><h3>🌍 {t('detail.existence')}</h3><p className="info-text">{get('existence')}</p></div>
+          <div className="info-card"><h3>✨ {t('detail.personality')}</h3><p className="info-text">{get('personality')}</p></div>
+          <div className="info-card"><h3>💡 {t('detail.funFact')}</h3><p className="info-text">{get('funFact')}</p></div>
+          <div className="info-card"><h3>🔍 {t('detail.commonForm')}</h3><p className="info-text">{get('commonForm')}</p></div>
+          <div className="info-card"><h3>📐 {t('detail.physicalProperties')}</h3><p className="info-text">{get('physicalProperties')}</p></div>
         </aside>
       </div>
-
-      {/* 页脚 */}
-      <footer className="footer">
-        <p>{t('footer.copyright')}</p>
-      </footer>
+      <footer className="footer"><p>{t('footer.copyright')}</p></footer>
     </div>
   );
 }
