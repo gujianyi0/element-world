@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, useGLTF, Environment, ContactShadows, useProgress } from '@react-three/drei';
+import { OrbitControls, useGLTF, Environment, ContactShadows } from '@react-three/drei';
 import { useTranslation } from 'react-i18next';
 
 function Loader() {
@@ -14,7 +14,6 @@ function Loader() {
 
 function Model({ modelPath }) {
   const { scene } = useGLTF(modelPath);
-  // 不自动居中，保持模型原始位置
   return <primitive object={scene} position={[0, 0.6, 0]} />;
 }
 
@@ -39,9 +38,6 @@ function ModelViewer({ modelPath, themeColor = '#2980b9', backgroundImage }) {
     );
   }
 
-  // 科技蓝风格背景
-  const bgGradient = 'linear-gradient(180deg, #0a1628 0%, #112240 40%, #1a3a5c 100%)';
-
   return (
     <div className="model-viewer-panel">
       <div className="viewer-header">
@@ -56,7 +52,8 @@ function ModelViewer({ modelPath, themeColor = '#2980b9', backgroundImage }) {
               position: 'absolute',
               inset: 0,
               backgroundImage: `url(${backgroundImage})`,
-              backgroundSize: 'cover',
+              backgroundSize: 'contain',
+              backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center',
               opacity: 0.35,
               zIndex: 0,
@@ -64,10 +61,20 @@ function ModelViewer({ modelPath, themeColor = '#2980b9', backgroundImage }) {
           />
         )}
         <Canvas
+          key={modelPath}
           camera={{ position: [2.5, 2.2, 4], fov: 42 }}
-          style={{ position: 'relative', zIndex: 1, background: backgroundImage ? 'transparent' : bgGradient }}
+          style={{ position: 'relative', zIndex: 1 }}
+          gl={{ preserveDrawingBuffer: false, antialias: true }}
+          onCreated={({ gl }) => {
+            // WebGL 上下文丢失时自动恢复
+            gl.domElement.addEventListener('webglcontextlost', (e) => {
+              e.preventDefault();
+            });
+          }}
         >
-          <color attach="background" args={['#0a1628']} />
+          {backgroundImage ? (
+            <color attach="background" args={['#0a1628']} />
+          ) : null}
 
           <ambientLight intensity={0.55} />
           <directionalLight position={[5, 8, 5]} intensity={1.0} castShadow />

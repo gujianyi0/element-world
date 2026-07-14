@@ -365,20 +365,38 @@ h1, h2, h3, h4 { font-family: var(--heading); color: var(--text-heading); font-w
 @media (max-width: 768px) {
   .detail-content {
     flex-direction: column;
+    gap: 16px;
+    padding: 12px;
   }
   .info-panel {
     width: 100%;
     max-height: none;
     position: static;
   }
+  .info-panel .info-card {
+    padding: 16px;
+  }
   .model-viewer-panel {
-    min-height: 350px;
+    min-height: 65vh;
+    max-height: 70vh;
+  }
+  .model-viewer-panel .viewer-header {
+    padding: 8px 14px;
+    font-size: 0.8rem;
   }
   .reference-card {
     flex-direction: column;
   }
   .hero-section h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
+  }
+  .hero-section {
+    padding: 40px 16px 28px;
+  }
+  .elements-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+    padding: 0 12px 40px;
   }
 }
 
