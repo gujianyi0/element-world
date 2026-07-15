@@ -10,6 +10,10 @@ dist/
 # 临时脚本（一次性使用）
 scripts/
 
+# 环境变量（含密钥，不提交）
+.env
+.env.local
+
 # 系统文件
 .DS_Store
 Thumbs.db

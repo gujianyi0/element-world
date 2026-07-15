@@ -27,6 +27,22 @@
     "physicalProperties": "Physical Properties",
     "modelInfo": "Model Information"
   },
+  "comments": {
+    "title": "Comments",
+    "adminMode": "Admin",
+    "exitAdmin": "Exit Admin",
+    "nicknamePlaceholder": "Your nickname",
+    "contentPlaceholder": "Write a comment... (Ctrl+Enter to send)",
+    "submit": "Post",
+    "delete": "Delete",
+    "noComments": "No comments yet. Be the first to comment!",
+    "loading": "Loading comments...",
+    "postFailed": "Failed to post, please try again",
+    "urlBlocked": "Comments cannot contain URLs",
+    "nicknameRequired": "Please enter a nickname",
+    "contentRequired": "Please enter a comment",
+    "deleteConfirm": "Delete this comment?"
+  },
   "footer": {
     "copyright": "© 2026 Element World by GuJianYi. All rights reserved."
   }

@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import Header from '../components/Header';
+import CommentSection from '../components/CommentSection';
 import { getElementById } from '../data/elements';
 
 // 手机端：纯图片展示，零 Three.js 依赖
@@ -123,6 +124,12 @@ function ElementDetail() {
           <div className="info-card"><h3>📐 {t('detail.physicalProperties')}</h3><p className="info-text">{get('physicalProperties')}</p></div>
         </aside>
       </div>
+
+      {/* 评论区 - 宽度与详情内容对齐 */}
+      <div className="comment-wrapper">
+        <CommentSection elementId={element.id} />
+      </div>
+
       <footer className="footer"><p>{t('footer.copyright')}</p></footer>
     </div>
   );

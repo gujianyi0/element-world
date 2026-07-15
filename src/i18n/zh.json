@@ -27,6 +27,22 @@
     "physicalProperties": "物理性质",
     "modelInfo": "模型信息"
   },
+  "comments": {
+    "title": "评论",
+    "adminMode": "管理员",
+    "exitAdmin": "退出管理",
+    "nicknamePlaceholder": "你的昵称",
+    "contentPlaceholder": "写下你的评论... (Ctrl+Enter 发送)",
+    "submit": "发布",
+    "delete": "删除",
+    "noComments": "还没有评论，来说点什么吧！",
+    "loading": "加载评论中...",
+    "postFailed": "发布失败，请稍后重试",
+    "urlBlocked": "评论中不能包含网址链接",
+    "nicknameRequired": "请输入昵称",
+    "contentRequired": "请输入评论内容",
+    "deleteConfirm": "确定删除这条评论？"
+  },
   "footer": {
     "copyright": "© 2026 元素世界 Element World. 故剑遗 保留所有权利。"
   }

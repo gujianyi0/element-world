@@ -1,0 +1,8 @@
+name = "element-world-api"
+main = "src/index.js"
+compatibility_date = "2025-07-15"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "element-world-comments"
+database_id = "f50e80f8-a215-44ff-ac0f-ff40e854dd8d"
