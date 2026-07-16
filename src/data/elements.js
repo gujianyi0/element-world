@@ -95,8 +95,10 @@ const elements = [
     nameEn: 'Iron',
     symbol: 'Fe',
     atomicNumber: 26,
-    modelFile: null, // 暂无3D模型
-    modelFormat: null,
+    modelFile: 'iron.glb',
+    modelFormat: 'glb',
+    thumbnailZh: '/images/reference/tie.png',
+    thumbnailEn: '/images/reference/tie_en.jpg',
     color: '#7f8c8d',
     basicInfo: {
       zh: '铁是宇宙中丰度最高的元素之一，是恒星核聚变的终点。它构成了地球的内核，也是人类文明进入铁器时代的标志。铁的拟人化形象是一位坚强可靠的战士少女。',
@@ -129,8 +131,10 @@ const elements = [
     nameEn: 'Carbon',
     symbol: 'C',
     atomicNumber: 6,
-    modelFile: null,
-    modelFormat: null,
+    modelFile: 'carbon.glb',
+    modelFormat: 'glb',
+    thumbnailZh: '/images/reference/tan.png',
+    thumbnailEn: '/images/reference/tan_en.jpg',
     color: '#2c3e50',
     basicInfo: {
       zh: '碳是有机生命的基础元素，所有已知生命形式都以碳为骨架。从钻石到石墨，碳的表现形式千变万化。碳的拟人化形象是一位百变的多面少女，既是璀璨的钻石公主，也是低调的石墨学者。',

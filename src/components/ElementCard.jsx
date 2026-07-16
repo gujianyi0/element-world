@@ -36,7 +36,7 @@ function ElementCard({ element }) {
           <img
             src={thumbnail}
             alt={name}
-            style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '12px' }}
+            style={{ width: '100%', height: '100%', objectFit: 'fill' }}
           />
         ) : (
           <span className="placeholder-icon">
