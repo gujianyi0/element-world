@@ -197,6 +197,74 @@ const elements = [
       en: 'Atomic Number: 79 | Atomic Weight: 196.97 | Melting Point: 1064°C | Boiling Point: 2856°C | Density: 19.32 g/cm³ | State: Solid | Category: Transition Metal / Precious Metal | Properties: Never oxidizes, extremely malleable',
     },
   },
+  {
+    id: 'hydrogen',
+    nameZh: '氢',
+    nameEn: 'Hydrogen',
+    symbol: 'H',
+    atomicNumber: 1,
+    modelFile: 'hydrogen.glb',
+    modelFormat: 'glb',
+    color: '#85c1e9',
+    basicInfo: {
+      zh: '氢是宇宙中最丰富的元素，占宇宙可见物质的约75%。它是最轻、最简单的元素，只有一个质子和一个电子。氢的拟人化形象是一位纯真活泼的少女，作为元素周期表的001号，她是一切的开端。',
+      en: 'Hydrogen is the most abundant element in the universe, making up about 75% of visible matter. It is the lightest and simplest element, with just one proton and one electron. Its anthropomorphized form is an innocent and lively girl — as No.001 on the periodic table, she is the beginning of everything.',
+    },
+    existence: {
+      zh: '氢主要以水的形式存在于地球上，也存在于所有有机化合物中。在宇宙中，氢是恒星的主要燃料——太阳通过氢核聚变发光发热。氢气是最轻的气体，曾用于飞艇，现在用于火箭燃料和清洁能源。',
+      en: 'Hydrogen exists on Earth primarily as water and in all organic compounds. In the universe, it is the main fuel of stars — the Sun shines through hydrogen fusion. Hydrogen gas is the lightest gas, once used in airships and now used in rocket fuel and clean energy.',
+    },
+    personality: {
+      zh: '性格设定：纯真、好奇、充满活力的少女。她是元素家族中最小的妹妹，总是第一个冲出去尝试新事物。她单纯而热情，像星星之火可以燎原——一个氢原子可以引发巨大的能量。她梦想着成为清洁能源，为世界带来光明。',
+      en: 'Personality: An innocent, curious, and energetic girl. She is the youngest sister in the element family, always the first to rush out and try new things. She is simple yet passionate — like a single spark that can start a prairie fire, one hydrogen atom can unleash enormous energy. She dreams of becoming clean energy, bringing light to the world.',
+    },
+    funFact: {
+      zh: '你的身体里大约有62%是氢原子（按原子数量算）！氢是最古老的元素，大爆炸后几分钟就形成了。另外，木星的主要成分是氢——如果能点燃木星，它几乎可以变成一颗小恒星。不过别担心，木星上没有氧气，烧不起来。',
+      en: 'About 62% of the atoms in your body are hydrogen! It is the oldest element, formed just minutes after the Big Bang. Jupiter is mostly made of hydrogen — if it could be ignited, it would almost become a small star. But don\'t worry, there\'s no oxygen on Jupiter to burn it.',
+    },
+    commonForm: {
+      zh: '常见存在形式：水（H₂O）、氢气、有机化合物、酸。日常可见于水、天然气、塑料、汽油、化肥中。液氢是航天火箭的主要燃料。',
+      en: 'Common forms: Water (H₂O), hydrogen gas, organic compounds, acids. Found in water, natural gas, plastics, gasoline, and fertilizers. Liquid hydrogen is the primary fuel for space rockets.',
+    },
+    physicalProperties: {
+      zh: '原子序数：1 | 原子量：1.008 | 沸点：-252.9°C | 熔点：-259.1°C | 密度：0.00008988 g/cm³ | 状态：气态 | 分类：非金属 | 特性：最轻元素、宇宙最丰富元素',
+      en: 'Atomic Number: 1 | Atomic Weight: 1.008 | Boiling Point: -252.9°C | Melting Point: -259.1°C | Density: 0.00008988 g/cm³ | State: Gas | Category: Nonmetal | Properties: Lightest element, most abundant element in universe',
+    },
+  },
+  {
+    id: 'helium',
+    nameZh: '氦',
+    nameEn: 'Helium',
+    symbol: 'He',
+    atomicNumber: 2,
+    modelFile: 'helium.glb',
+    modelFormat: 'glb',
+    color: '#e8d5f5',
+    basicInfo: {
+      zh: '氦是宇宙中第二丰富的元素，仅次于氢。它是一种无色无味的惰性气体，永远不会与其他元素发生化学反应。氦的拟人化形象是一位轻盈飘逸的少女，如同她所代表的气体一样自由灵动。',
+      en: 'Helium is the second most abundant element in the universe, after hydrogen. It is a colorless, odorless inert gas that never chemically reacts with other elements. Its anthropomorphized form is a light and ethereal girl, as free and agile as the gas she represents.',
+    },
+    existence: {
+      zh: '氦主要存在于天然气田中，通过天然气提取获得。它也存在于恒星中——太阳就是巨大的氦工厂，通过氢核聚变持续产生氦。液氦是最冷的液体（-269°C），用于超导磁体和粒子加速器等尖端科学设备。',
+      en: 'Helium is mainly found in natural gas fields and extracted from them. It also exists in stars — the Sun is a giant helium factory, continuously producing helium through hydrogen fusion. Liquid helium is the coldest liquid (-269°C), used in superconducting magnets and particle accelerators.',
+    },
+    personality: {
+      zh: '性格设定：轻盈、自由、不受束缚的少女。她有着透明翅膀般的灵气，总是漂浮在空中俯瞰世界。她不爱与任何人起冲突（惰性气体嘛），保持着优雅的距离感。她的声音会让人的声带振动变快，所以说话会变成尖细的卡通音。',
+      en: 'Personality: A light, free, and unconstrained girl. She has an aura like transparent wings, always floating above the world. She dislikes conflict with anyone (being an inert gas), maintaining an elegant sense of distance. Her voice makes vocal cords vibrate faster, turning speech into a high-pitched cartoon sound.',
+    },
+    funFact: {
+      zh: '吸入氦气会让声音变成卡通音！因为氦的密度远低于空气，声带在氦气中振动更快。另外，氦是唯一一种在常压下即使降到绝对零度也不会凝固的元素——它永远是液体，除非施加高压。还有，太阳每秒将6亿吨氢转化为氦，释放出照亮地球的能量。',
+      en: 'Inhaling helium makes your voice sound cartoonish! Because helium is much less dense than air, vocal cords vibrate faster in it. Also, helium is the only element that won\'t solidify at absolute zero under normal pressure — it stays liquid unless high pressure is applied. The Sun converts 600 million tons of hydrogen to helium every second.',
+    },
+    commonForm: {
+      zh: '常见存在形式：天然气、液氦冷却剂、派对氦气球、飞艇。日常可见于生日气球、MRI医疗设备、半导体制造、火箭燃料加压系统中。',
+      en: 'Common forms: Natural gas, liquid helium coolant, party helium balloons, airships. Found in birthday balloons, MRI medical equipment, semiconductor manufacturing, and rocket fuel pressurization systems.',
+    },
+    physicalProperties: {
+      zh: '原子序数：2 | 原子量：4.0026 | 沸点：-268.9°C | 熔点：-272.2°C（高压下）| 密度：0.0001785 g/cm³ | 状态：气态 | 分类：稀有气体/惰性气体 | 特性：最冷的液体、化学性质最不活泼的元素',
+      en: 'Atomic Number: 2 | Atomic Weight: 4.0026 | Boiling Point: -268.9°C | Melting Point: -272.2°C (under pressure) | Density: 0.0001785 g/cm³ | State: Gas | Category: Noble Gas / Inert Gas | Properties: Coldest liquid, most chemically inert element',
+    },
+  },
 ];
 
 export default elements;

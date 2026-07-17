@@ -1,5 +1,8 @@
-// 评论 API（同域名 Pages Functions + D1，国内外均可访问）
-const API_BASE = '/api';
+// 评论 API（Cloudflare Pages Functions + D1）
+// 本地开发时指向已部署的线上版本，生产环境用同域名
+const API_BASE = import.meta.env.DEV
+  ? 'https://f75e9e6c.element-world.pages.dev/api'
+  : '/api';
 
 // 生成访客唯一 ID（用于点赞去重，存 sessionStorage）
 function getVisitorId() {
