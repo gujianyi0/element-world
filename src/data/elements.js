@@ -205,6 +205,8 @@ const elements = [
     atomicNumber: 1,
     modelFile: 'hydrogen.glb',
     modelFormat: 'glb',
+    thumbnailZh: '/images/reference/qing.png',
+    thumbnailEn: '/images/reference/qing.png',
     color: '#85c1e9',
     basicInfo: {
       zh: '氢是宇宙中最丰富的元素，占宇宙可见物质的约75%。它是最轻、最简单的元素，只有一个质子和一个电子。氢的拟人化形象是一位纯真活泼的少女，作为元素周期表的001号，她是一切的开端。',
@@ -239,6 +241,8 @@ const elements = [
     atomicNumber: 2,
     modelFile: 'helium.glb',
     modelFormat: 'glb',
+    thumbnailZh: '/images/reference/hai.png',
+    thumbnailEn: '/images/reference/hai_en.jpg',
     color: '#e8d5f5',
     basicInfo: {
       zh: '氦是宇宙中第二丰富的元素，仅次于氢。它是一种无色无味的惰性气体，永远不会与其他元素发生化学反应。氦的拟人化形象是一位轻盈飘逸的少女，如同她所代表的气体一样自由灵动。',
